@@ -1,0 +1,23 @@
+library(dplyr)
+PlayerBB=read.csv(file.choose(),header =TRUE)
+PlayerBB$height=str_replace_all(PlayerBB$height,"-", "*6+")
+PlayerBB$height=paste0("'",PlayerBB$height,"'")
+
+?sapply()
+
+(parse(text = PlayerBB$height)
+
+
+
+
+
+
+
+library(dplyr)
+
+mydata <- data.frame(
+  fff = c('5.89*10^3', '1.28*10^2', '4.11*10^5'))
+
+
+  
+transform(mydata, eval = as.numeric(sub('*10^', 'e', fff, fixed = TRUE)))
