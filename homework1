@@ -184,8 +184,27 @@ avg_dest_delays %>%
   geom_point() + coord_quickmap()
 
 ############question number 2
+testflight=flights
+colnames(avg_dest_delays)[1]="avgdelay"
 
-avg_dest_delays %>%
-  select(dest,lat,lon) %>%
-  left_join(flight,flight$dest)
+testflight=avg_dest_delays %>%
+  select(avgdelay,delay,lat,lon) %>%
+  right_join(testflight,by=c(avgdelay="dest"))
+
+###########question 3
+###Is there a relationship between the age of a plane and its delays?
+###I think there is, but I have no data to prove it
+
+##########question 4
+#What weather conditions make it more likely to see a delay?
+#anwser: rain
+
+##########question 5
+testflight=separate(testflight,time_hour,into=c("date","hour"),sep = " ")
+str(testflight$date)
+
+testflight%>%
+  filter(date=="2013-06-13")%>%
+  ggplot(aes(lon,lat,color=delay)) +borders("state")+
+  geom_point()+coord_quickmap()
 
